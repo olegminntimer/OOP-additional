@@ -25,4 +25,3 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
             return None
         self.__price = amount
-        return self.__price
