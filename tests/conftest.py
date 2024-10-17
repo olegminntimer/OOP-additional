@@ -5,7 +5,7 @@ from src.product import Product
 
 
 @pytest.fixture
-def first_category():
+def first_category() -> Category:
     return Category(
         name="Смартфоны",
         description="""Смартфоны, как средство не только коммуникации, но и получения дополнительных функций \
@@ -24,7 +24,7 @@ def first_category():
 
 
 @pytest.fixture
-def second_category():
+def second_category() -> Category:
     return Category(
         name="Телевизоры",
         description="""Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом \
@@ -34,5 +34,5 @@ def second_category():
 
 
 @pytest.fixture
-def product():
+def product() -> Product:
     return Product("Iphone 15", "512GB, Gray space", 210000.0, 8)

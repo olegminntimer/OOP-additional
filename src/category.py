@@ -1,4 +1,4 @@
-from unicodedata import category
+from typing import Optional
 
 from src.product import Product
 
@@ -7,12 +7,11 @@ class Category:
     """
     Класс описывает категорию продукта
     """
-    name: str
-    description: str
-    products: list
-    product_count = 0
-    category_count = 0
-    def __init__(self, name, description, products=None):
+
+    product_count: int = 0
+    category_count: int = 0
+
+    def __init__(self, name: str, description: str, products: Optional[list] = None):
         """Инициализация экземпляра класса Category"""
         self.name = name
         self.description = description
@@ -21,21 +20,19 @@ class Category:
         Category.product_count += len(products) if products else 0
 
     @property
-    def products(self):#
+    def products(self) -> str:  #
         products_str = ""
         for product in self.__products:
             products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return products_str
 
-    @products.setter
-    def add_product(self, product: Product):
+    def add_product(self, product: Product) -> None:
         self.__products.append(product)
         Category.product_count += 1
 
     @property
-    def products_in_list(self):
+    def products_in_list(self) -> list:
         return self.__products
-
 
 # if __name__ == "__main__":
 #     product1 = Product(
@@ -59,4 +56,3 @@ class Category:
 #     category1.add_product(product4)
 #     print(category1.products)
 #     print(Category.product_count)
-
