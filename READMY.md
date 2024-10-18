@@ -8,6 +8,7 @@
 2. Модуль *category.py* - класс Category.
 3. Модуль *utils.py* - считывает json-данные и преобразует эти данные в Python-объекты.
 4. Модуль *main* проверяет работоспособность модулей *product.py* и *category.py*.
+5. Поработали с @classmethod и @property
 
 ## Установка:
 
