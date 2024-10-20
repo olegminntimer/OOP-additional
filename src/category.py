@@ -19,20 +19,36 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
 
+    def __str__(self) -> str:
+        products_count = 0
+        for product_ in self.__products:
+            products_count += product_.quantity
+        return f"{self.name}, количество продуктов: {products_count} шт."
+
     @property
     def products(self) -> str:  #
         products_str = ""
-        for product in self.__products:
-            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+        for product_ in self.__products:
+            products_str += f"{str(product_)}\n"
         return products_str
 
-    def add_product(self, product: Product) -> None:
-        self.__products.append(product)
+    def add_product(self, product_: Product) -> None:
+        self.__products.append(product_)
         Category.product_count += 1
 
     @property
     def products_in_list(self) -> list:
         return self.__products
+
+
+def sum_of_cost_all_goods(products_: list) -> float:
+    """Функция считает стоимость всех товаров в категории"""
+    product_sum = Product("Стоимость всего", "Стоимость всех товаров в категории", 0, 0)
+    for prod in products_:
+        product_sum.sum_price = product_sum + prod
+        # product_sum.quantity += prod.quantity
+    return product_sum.sum_price
+
 
 # if __name__ == "__main__":
 #     product1 = Product(
@@ -45,7 +61,7 @@ class Category:
 #         "Смартфоны",
 #         """Смартфоны, как средство не только коммуникации, но и получения дополнительных
 # функций для удобства жизни""",
-#         [product1, product2, product3],
+#         [product1, product2, product3]
 #     )
 #     print(category1.name)
 #     print(category1.description)
@@ -56,3 +72,6 @@ class Category:
 #     category1.add_product(product4)
 #     print(category1.products)
 #     print(Category.product_count)
+#     print(category1)
+#
+# print(category1.sum_of_cost_all_goods(category1.products_in_list))
