@@ -1,6 +1,5 @@
 import pytest
 
-from src.category import Category
 from src.product import Product
 from src.product_iterator import ProductIterator
 
@@ -11,14 +10,16 @@ def test_product_init(product: Product) -> None:
     assert product.description == "512GB, Gray space"
     assert product.price == 210000.0
     assert product.quantity == 8
+    assert product.color == "Gray space"
 
 
 def test_product_create(product: Product) -> None:
-    product = Product.new_product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    product = Product.new_product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, "Синий")
     assert product.name == "Xiaomi Redmi Note 11"
     assert product.description == "1024GB, Синий"
     assert product.price == 31000.0
     assert product.quantity == 14
+    assert product.color == "Синий"
 
 
 def test_product_update(capsys, product: Product) -> None:
