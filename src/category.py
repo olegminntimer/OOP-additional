@@ -33,8 +33,11 @@ class Category:
         return products_str
 
     def add_product(self, product_: Product) -> None:
-        self.__products.append(product_)
-        Category.product_count += 1
+        if isinstance(product_, Product):
+            self.__products.append(product_)
+            Category.product_count += 1
+        else:
+            raise TypeError
 
     @property
     def products_in_list(self) -> list:
@@ -43,19 +46,18 @@ class Category:
 
 def sum_of_cost_all_goods(products_: list) -> float:
     """Функция считает стоимость всех товаров в категории"""
-    product_sum = Product("Стоимость всего", "Стоимость всех товаров в категории", 0, 0)
+    product_sum = 0
     for prod in products_:
-        product_sum.sum_price = product_sum + prod
-        # product_sum.quantity += prod.quantity
-    return product_sum.sum_price
+        product_sum += prod.quantity * prod.price
+    return product_sum
 
 
 # if __name__ == "__main__":
 #     product1 = Product(
-#         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+#         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, "Серый"
 #     )
-#     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-#     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+#     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8, "Gray space")
+#     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, "Синий")
 #
 #     category1 = Category(
 #         "Смартфоны",
@@ -68,10 +70,11 @@ def sum_of_cost_all_goods(products_: list) -> float:
 #     print(category1.products)
 #     print(Category.product_count)
 #
-#     product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
+#     product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7, "")
 #     category1.add_product(product4)
 #     print(category1.products)
 #     print(Category.product_count)
 #     print(category1)
 #
-# print(category1.sum_of_cost_all_goods(category1.products_in_list))
+# print(sum_of_cost_all_goods(category1.products_in_list))
+#
