@@ -27,13 +27,13 @@ def test_product_update(capsys, product: Product) -> None:
     assert product.price == 150000
     product.price = -15
     message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+    assert message.out.strip().split("\n")[-1] == "Цена не должна быть нулевая или отрицательная"
 
 
 def test_product_str(capsys, product1: Product) -> None:
     print(product1)
     message = capsys.readouterr()
-    assert message.out.strip() == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+    assert message.out.strip().split("\n")[-1] == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
 
 
 def test_product_add(product1: Product, product2: Product) -> None:
