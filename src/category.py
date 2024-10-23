@@ -33,8 +33,11 @@ class Category:
         return products_str
 
     def add_product(self, product_: Product) -> None:
-        self.__products.append(product_)
-        Category.product_count += 1
+        if isinstance(product_, Product):
+            self.__products.append(product_)
+            Category.product_count += 1
+        else:
+            raise TypeError
 
     @property
     def products_in_list(self) -> list:
@@ -55,7 +58,7 @@ def sum_of_cost_all_goods(products_1: list) -> float:
 #     )
 #     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8, "Gray space")
 #     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, "Синий")
-# 
+#
 #     category1 = Category(
 #         "Смартфоны",
 #         """Смартфоны, как средство не только коммуникации, но и получения дополнительных
@@ -66,11 +69,11 @@ def sum_of_cost_all_goods(products_1: list) -> float:
 #     print(category1.description)
 #     print(category1.products)
 #     print(Category.product_count)
-# 
+#
 #     product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7, "")
 #     category1.add_product(product4)
 #     print(category1.products)
 #     print(Category.product_count)
 #     print(category1)
-# 
+#
 #     print(sum_of_cost_all_goods([product1, product2, product3]))

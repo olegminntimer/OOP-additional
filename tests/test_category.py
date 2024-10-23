@@ -1,3 +1,5 @@
+import pytest
+
 from src.category import Category, sum_of_cost_all_goods
 from src.product import Product
 
@@ -14,8 +16,9 @@ def test_category_count(first_category: Category, second_category: Category) -> 
 def test_category_init(first_category: Category, second_category: Category) -> None:
     """Тест проверяет корректность инициализации объектов класса Category"""
     assert first_category.name == "Смартфоны"
-    assert first_category.description == ("Смартфоны, как средство не только коммуникации, но и получения"
-                                          " дополнительных функций для удобства жизни")
+    assert first_category.description == (
+        "Смартфоны, как средство не только коммуникации, но и получения" " дополнительных функций для удобства жизни"
+    )
     assert len(first_category.products_in_list) == 3
 
 
@@ -43,3 +46,14 @@ def test_category_str(first_category: Category) -> None:
 def test_sum_of_cost_all_goods(products_: list) -> None:
     """Тест проверяет функцию подсчета стоимости всех товаров в категории"""
     assert sum_of_cost_all_goods(products_) == 3014000.0
+
+
+def test_category_products_setter_error(first_category: Category, product: Product) -> None:
+    """Тест проверяет сеттер свойства products"""
+    with pytest.raises(TypeError):
+        first_category.add_product(1)
+
+
+def test_category_products_setter_smartphone(first_category, smartphone_1):
+    first_category.add_product(smartphone_1)
+    assert first_category.products_in_list[-1].name == "Xiaomi Redmi Note 11"

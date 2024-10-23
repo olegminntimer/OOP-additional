@@ -12,12 +12,13 @@ def test_product_init(product: Product) -> None:
     assert product.quantity == 8
 
 
-def test_product_create(product: Product) -> None:
+def test_product_create() -> None:
     product = Product.new_product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, "Синий")
     assert product.name == "Xiaomi Redmi Note 11"
     assert product.description == "1024GB, Синий"
     assert product.price == 31000.0
     assert product.quantity == 14
+    assert product.color == "Синий"
 
 
 def test_product_update(capsys, product: Product) -> None:

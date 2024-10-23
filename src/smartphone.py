@@ -8,10 +8,10 @@ class Smartphone(Product):
         description: str,
         price: float,
         quantity: int,
-        color: str,
-        efficiency: str,
+        efficiency: float,
         model: str,
         memory: int,
+        color: str,
     ):
         super().__init__(name, description, price, quantity, color)
         self.efficiency = efficiency
@@ -25,7 +25,8 @@ class Smartphone(Product):
 
 
 # if __name__ == "__main__":
-#     smrt = Smartphone("", )
+#     smrt = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14,
+#                       "Синий", "Good", "Note 11", 1024)
 #     print(smrt.efficiency)
 #     print(smrt.model)
 #     print(smrt.memory)
