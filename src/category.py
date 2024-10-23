@@ -41,37 +41,36 @@ class Category:
         return self.__products
 
 
-def sum_of_cost_all_goods(products_: list) -> float:
+def sum_of_cost_all_goods(products_1: list) -> float:
     """Функция считает стоимость всех товаров в категории"""
-    product_sum = Product("Стоимость всего", "Стоимость всех товаров в категории", 0, 0)
-    for prod in products_:
-        product_sum.sum_price = product_sum + prod
-        # product_sum.quantity += prod.quantity
-    return product_sum.sum_price
+    product_sum = 0
+    for prod in products_1:
+        product_sum += prod.price * prod.quantity
+    return product_sum
 
 
-# if __name__ == "__main__":
-#     product1 = Product(
-#         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
-#     )
-#     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-#     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
-#
-#     category1 = Category(
-#         "Смартфоны",
-#         """Смартфоны, как средство не только коммуникации, но и получения дополнительных
-# функций для удобства жизни""",
-#         [product1, product2, product3]
-#     )
-#     print(category1.name)
-#     print(category1.description)
-#     print(category1.products)
-#     print(Category.product_count)
-#
-#     product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
-#     category1.add_product(product4)
-#     print(category1.products)
-#     print(Category.product_count)
-#     print(category1)
-#
-# print(category1.sum_of_cost_all_goods(category1.products_in_list))
+if __name__ == "__main__":
+    product1 = Product(
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, "Серый"
+    )
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8, "Gray space")
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, "Синий")
+
+    category1 = Category(
+        "Смартфоны",
+        """Смартфоны, как средство не только коммуникации, но и получения дополнительных
+функций для удобства жизни""",
+        [product1, product2, product3]
+    )
+    print(category1.name)
+    print(category1.description)
+    print(category1.products)
+    print(Category.product_count)
+
+    product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7, "")
+    category1.add_product(product4)
+    print(category1.products)
+    print(Category.product_count)
+    print(category1)
+
+    print(sum_of_cost_all_goods([product1, product2, product3]))

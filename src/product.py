@@ -13,6 +13,7 @@ class Product(BaseProduct, PrintMixin):
         self.quantity = quantity
         super().__init__()
 
+
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 

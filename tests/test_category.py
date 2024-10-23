@@ -42,4 +42,4 @@ def test_category_str(first_category: Category) -> None:
 
 def test_sum_of_cost_all_goods(products_: list) -> None:
     """Тест проверяет функцию подсчета стоимости всех товаров в категории"""
-    assert sum_of_cost_all_goods(products_) == 434000.0
+    assert sum_of_cost_all_goods(products_) == 3014000.0
