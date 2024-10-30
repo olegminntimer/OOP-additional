@@ -57,3 +57,22 @@ def test_category_products_setter_error(first_category: Category, product: Produ
 def test_category_products_setter_smartphone(first_category, smartphone_1):
     first_category.add_product(smartphone_1)
     assert first_category.products_in_list[-1].name == "Xiaomi Redmi Note 11"
+
+
+def test_middle_price(first_category):
+    assert first_category.middle_price() == 9.0
+
+
+def test_middle_price_zero(category_without_products):
+    assert category_without_products.middle_price() == 0
+
+
+def test_custom_exception(capsys, first_category):
+    assert first_category.category_count == 12
+
+    category_add = Product("Xiaomi 9", "16GB, Синий", 23000.0, 23, "Синий")
+    first_category.add_product(category_add)
+    message = capsys.readouterr()
+    assert message.out.strip().split("\n")[-2] == "Товар успешно добавлен."
+    assert message.out.strip().split("\n")[-1] == "Обработка добавления товара завершена."
+

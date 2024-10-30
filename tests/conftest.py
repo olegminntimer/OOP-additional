@@ -78,3 +78,12 @@ def lawngrass_1():
 @pytest.fixture
 def lawngrass_2():
     return LawnGrass("Трава", "Трава светло-зеленая", 6000, 10, "Светло-зеленый", "Россия", 10)
+
+
+@pytest.fixture
+def category_without_products():
+    return Category(
+        name="Смартфоны",
+        description="""Смартфоны, как средство не только коммуникации, но и получения дополнительных функций \
+    для удобства жизни"""
+    )
