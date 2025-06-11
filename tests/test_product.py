@@ -1,6 +1,5 @@
 import pytest
 
-from src.category import Category
 from src.product import Product
 from src.product_iterator import ProductIterator
 
@@ -13,12 +12,13 @@ def test_product_init(product: Product) -> None:
     assert product.quantity == 8
 
 
-def test_product_create(product: Product) -> None:
-    product = Product.new_product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+def test_product_create() -> None:
+    product = Product.new_product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, "Синий")
     assert product.name == "Xiaomi Redmi Note 11"
     assert product.description == "1024GB, Синий"
     assert product.price == 31000.0
     assert product.quantity == 14
+    assert product.color == "Синий"
 
 
 def test_product_update(capsys, product: Product) -> None:
@@ -27,13 +27,13 @@ def test_product_update(capsys, product: Product) -> None:
     assert product.price == 150000
     product.price = -15
     message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+    assert message.out.strip().split("\n")[-1] == "Цена не должна быть нулевая или отрицательная"
 
 
 def test_product_str(capsys, product1: Product) -> None:
     print(product1)
     message = capsys.readouterr()
-    assert message.out.strip() == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+    assert message.out.strip().split("\n")[-1] == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
 
 
 def test_product_add(product1: Product, product2: Product) -> None:
